@@ -157,6 +157,9 @@ test('Update bug', async () => {
       blocks: { set: [bugs[1] as number] },
       comment: { comment: 'New comment', is_private: false },
       severity: 'normal',
+      see_also: {
+        add: ['https://github.com/redhat-plumbers-in-action/bugzilla/pull/69'],
+      },
     }),
   ).resolves.toEqual([
     {
@@ -164,6 +167,14 @@ test('Update bug', async () => {
       changes: new Map([
         ['blocks', { added: '2', removed: '' }],
         ['severity', { added: 'normal', removed: 'major' }],
+        [
+          'see_also',
+          {
+            added:
+              'https://github.com/redhat-plumbers-in-action/bugzilla/pull/69',
+            removed: '',
+          },
+        ],
       ]),
       id: bugs[0],
       last_change_time: expect.anything(),
